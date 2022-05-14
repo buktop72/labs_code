@@ -1,0 +1,8 @@
+|laba5
+y <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+a1 => inst5.IN0
+a1 => inst6.IN1
+a0 => inst2.IN0
+a2 => inst8.IN0
+
+

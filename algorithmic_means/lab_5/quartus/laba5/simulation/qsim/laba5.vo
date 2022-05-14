@@ -1,0 +1,141 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// VENDOR "Altera"
+// PROGRAM "Quartus II 64-Bit"
+// VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
+
+// DATE "05/12/2022 08:42:13"
+
+// 
+// Device: Altera EPM2210F324A5 Package FBGA324
+// 
+
+// 
+// This Verilog file should be used for ModelSim-Altera (Verilog) only
+// 
+
+`timescale 1 ps/ 1 ps
+
+module laba5 (
+	y,
+	a1,
+	a0,
+	a2);
+output 	y;
+input 	a1;
+input 	a0;
+input 	a2;
+
+// Design Ports Information
+// a1	=>  Location: PIN_A4,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// a0	=>  Location: PIN_A2,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// a2	=>  Location: PIN_A5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// y	=>  Location: PIN_A6,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+tri1 devclrn;
+tri1 devpor;
+tri1 devoe;
+wire \a0~combout ;
+wire \a1~combout ;
+wire \a2~combout ;
+wire \inst7~0_combout ;
+
+
+// Location: PIN_A2,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \a0~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\a0~combout ),
+	.padio(a0));
+// synopsys translate_off
+defparam \a0~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_A4,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \a1~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\a1~combout ),
+	.padio(a1));
+// synopsys translate_off
+defparam \a1~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_A5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \a2~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\a2~combout ),
+	.padio(a2));
+// synopsys translate_off
+defparam \a2~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X4_Y13_N2
+maxii_lcell \inst7~0 (
+// Equation(s):
+// \inst7~0_combout  = ((\a0~combout  & (\a1~combout  & !\a2~combout )) # (!\a0~combout  & ((\a1~combout ) # (!\a2~combout ))))
+
+	.clk(gnd),
+	.dataa(vcc),
+	.datab(\a0~combout ),
+	.datac(\a1~combout ),
+	.datad(\a2~combout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(\inst7~0_combout ),
+	.regout(),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \inst7~0 .lut_mask = "30f3";
+defparam \inst7~0 .operation_mode = "normal";
+defparam \inst7~0 .output_mode = "comb_only";
+defparam \inst7~0 .register_cascade_mode = "off";
+defparam \inst7~0 .sum_lutc_input = "datac";
+defparam \inst7~0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_A6,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \y~I (
+	.datain(\inst7~0_combout ),
+	.oe(vcc),
+	.combout(),
+	.padio(y));
+// synopsys translate_off
+defparam \y~I .operation_mode = "output";
+// synopsys translate_on
+
+endmodule

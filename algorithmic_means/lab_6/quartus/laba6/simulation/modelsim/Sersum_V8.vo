@@ -1,0 +1,192 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// VENDOR "Altera"
+// PROGRAM "Quartus II 64-Bit"
+// VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
+
+// DATE "05/11/2022 21:15:25"
+
+// 
+// Device: Altera EPM2210F324C3 Package FBGA324
+// 
+
+// 
+// This Verilog file should be used for ModelSim-Altera (Verilog) only
+// 
+
+`timescale 1 ps/ 1 ps
+
+module Sersum_V8 (
+	xs,
+	ys,
+	first,
+	clk,
+	ssum);
+input 	xs;
+input 	ys;
+input 	first;
+input 	clk;
+output 	ssum;
+
+// Design Ports Information
+// xs	=>  Location: PIN_A8,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// ys	=>  Location: PIN_A9,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// clk	=>  Location: PIN_A5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// first	=>  Location: PIN_A6,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+// ssum	=>  Location: PIN_A7,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+tri1 devclrn;
+tri1 devpor;
+tri1 devoe;
+wire \clk~combout ;
+wire \ys~combout ;
+wire \xs~combout ;
+wire \first~combout ;
+wire \ci~regout ;
+wire \ssum~reg0_regout ;
+
+
+// Location: PIN_A5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \clk~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\clk~combout ),
+	.padio(clk));
+// synopsys translate_off
+defparam \clk~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_A9,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \ys~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\ys~combout ),
+	.padio(ys));
+// synopsys translate_off
+defparam \ys~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_A8,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \xs~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\xs~combout ),
+	.padio(xs));
+// synopsys translate_off
+defparam \xs~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: PIN_A6,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \first~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\first~combout ),
+	.padio(first));
+// synopsys translate_off
+defparam \first~I .operation_mode = "input";
+// synopsys translate_on
+
+// Location: LC_X9_Y13_N2
+maxii_lcell ci(
+// Equation(s):
+// \ci~regout  = DFFEAS(((\ys~combout  & ((\xs~combout ) # (\ci~regout ))) # (!\ys~combout  & (\xs~combout  & \ci~regout ))), GLOBAL(\clk~combout ), VCC, , \first~combout , , , , )
+
+	.clk(\clk~combout ),
+	.dataa(vcc),
+	.datab(\ys~combout ),
+	.datac(\xs~combout ),
+	.datad(\ci~regout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\first~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\ci~regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam ci.lut_mask = "fcc0";
+defparam ci.operation_mode = "normal";
+defparam ci.output_mode = "reg_only";
+defparam ci.register_cascade_mode = "off";
+defparam ci.sum_lutc_input = "datac";
+defparam ci.synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X9_Y13_N4
+maxii_lcell \ssum~reg0 (
+// Equation(s):
+// \ssum~reg0_regout  = DFFEAS((\ys~combout  $ (\xs~combout  $ (\ci~regout ))), GLOBAL(\clk~combout ), VCC, , \first~combout , , , , )
+
+	.clk(\clk~combout ),
+	.dataa(vcc),
+	.datab(\ys~combout ),
+	.datac(\xs~combout ),
+	.datad(\ci~regout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\first~combout ),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\ssum~reg0_regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam \ssum~reg0 .lut_mask = "c33c";
+defparam \ssum~reg0 .operation_mode = "normal";
+defparam \ssum~reg0 .output_mode = "reg_only";
+defparam \ssum~reg0 .register_cascade_mode = "off";
+defparam \ssum~reg0 .sum_lutc_input = "datac";
+defparam \ssum~reg0 .synch_mode = "off";
+// synopsys translate_on
+
+// Location: PIN_A7,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \ssum~I (
+	.datain(\ssum~reg0_regout ),
+	.oe(vcc),
+	.combout(),
+	.padio(ssum));
+// synopsys translate_off
+defparam \ssum~I .operation_mode = "output";
+// synopsys translate_on
+
+endmodule

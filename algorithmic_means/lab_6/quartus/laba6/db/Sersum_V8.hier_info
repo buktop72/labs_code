@@ -1,0 +1,14 @@
+|Sersum_V8
+xs => ssum.IN0
+xs => ci.IN0
+xs => ci.IN1
+ys => ssum.IN1
+ys => ci.IN1
+ys => ci.IN1
+first => ci.ENA
+first => ssum~reg0.ENA
+clk => ci.CLK
+clk => ssum~reg0.CLK
+ssum <= ssum~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
