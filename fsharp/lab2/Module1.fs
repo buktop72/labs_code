@@ -105,18 +105,10 @@ type Basic =
     member this.Printing() =
         printfn "count messeges: %i" this.k
         printfn "Types messeges:" 
-        let mutable i = 0
-        while i < this.k do
-            printfn $"{i + 1} - type: {this.stream.[i]}; reciver: {this.recivers.[i]}"
-            i <- i + 1
-        //Array.iter2 (printfn "%A %A") stream, recivers
-        
+        Array.iteri (fun i (x, y) ->  (printfn $"N {i + 1}   type: {x}  reciver: {y}")) (Array.zip this.recivers this.stream)
         printfn "types probability:"
         printfn "%A" this.countProbability
         printfn "recivers probability:"
         printfn "%A" this.countReciverProbability
         printfn "Время:"
-        (*i <- 0
-        while i < this.k do
-            printfn $"{i + 1} сообщение: {this.messagesTime.[i]} сек"
-            i <- i + 1*)
+
