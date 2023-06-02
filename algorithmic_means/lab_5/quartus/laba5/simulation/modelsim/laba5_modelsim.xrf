@@ -1,10 +1,11 @@
 vendor_name = ModelSim
-source_file = 1, D:/laba5/laba5.bdf
-source_file = 1, D:/laba5/laba5.vwf
-source_file = 1, D:/laba5/db/laba5.cbx.xml
+source_file = 1, D:/labs_code/algorithmic_means/lab_5/quartus/laba5/laba5.bdf
+source_file = 1, D:/labs_code/algorithmic_means/lab_5/quartus/laba5/laba5.vwf
+source_file = 1, D:/labs_code/algorithmic_means/lab_5/quartus/laba5/laba5.sdc
+source_file = 1, D:/labs_code/algorithmic_means/lab_5/quartus/laba5/db/laba5.cbx.xml
 design_name = laba5
+instance = comp, \a2~I , a2, laba5, 1
 instance = comp, \a0~I , a0, laba5, 1
 instance = comp, \a1~I , a1, laba5, 1
-instance = comp, \a2~I , a2, laba5, 1
 instance = comp, \inst7~0 , inst7~0, laba5, 1
 instance = comp, \y~I , y, laba5, 1

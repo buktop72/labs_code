@@ -1,4 +1,4 @@
-// Copyright (C) 1991-2013 Altera Corporation
+// Copyright (C) 1991-2010 Altera Corporation
 // Your use of Altera Corporation's design tools, logic functions 
 // and other software and tools, and its AMPP partner logic 
 // functions, and any output files from any of the foregoing 
@@ -13,10 +13,10 @@
 // applicable agreement for further details.
 
 // VENDOR "Altera"
-// PROGRAM "Quartus II 64-Bit"
-// VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
+// PROGRAM "Quartus II"
+// VERSION "Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition"
 
-// DATE "05/12/2022 08:42:13"
+// DATE "10/30/2022 10:23:41"
 
 // 
 // Device: Altera EPM2210F324A5 Package FBGA324
@@ -44,7 +44,6 @@ input 	a2;
 // a2	=>  Location: PIN_A5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 // y	=>  Location: PIN_A6,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
 
-
 wire gnd;
 wire vcc;
 wire unknown;
@@ -56,11 +55,21 @@ assign unknown = 1'bx;
 tri1 devclrn;
 tri1 devpor;
 tri1 devoe;
+wire \a2~combout ;
 wire \a0~combout ;
 wire \a1~combout ;
-wire \a2~combout ;
 wire \inst7~0_combout ;
 
+
+// Location: PIN_A5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \a2~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\a2~combout ),
+	.padio(a2));
+// synopsys translate_off
+defparam \a2~I .operation_mode = "input";
+// synopsys translate_on
 
 // Location: PIN_A2,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 maxii_io \a0~I (
@@ -82,26 +91,16 @@ maxii_io \a1~I (
 defparam \a1~I .operation_mode = "input";
 // synopsys translate_on
 
-// Location: PIN_A5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
-maxii_io \a2~I (
-	.datain(gnd),
-	.oe(gnd),
-	.combout(\a2~combout ),
-	.padio(a2));
-// synopsys translate_off
-defparam \a2~I .operation_mode = "input";
-// synopsys translate_on
-
-// Location: LC_X4_Y13_N2
+// Location: LC_X5_Y13_N2
 maxii_lcell \inst7~0 (
 // Equation(s):
-// \inst7~0_combout  = ((\a0~combout  & (\a1~combout  & !\a2~combout )) # (!\a0~combout  & ((\a1~combout ) # (!\a2~combout ))))
+// \inst7~0_combout  = (\a2~combout  & (((!\a0~combout  & \a1~combout )))) # (!\a2~combout  & (((\a1~combout ) # (!\a0~combout ))))
 
 	.clk(gnd),
-	.dataa(vcc),
-	.datab(\a0~combout ),
-	.datac(\a1~combout ),
-	.datad(\a2~combout ),
+	.dataa(\a2~combout ),
+	.datab(vcc),
+	.datac(\a0~combout ),
+	.datad(\a1~combout ),
 	.aclr(gnd),
 	.aload(gnd),
 	.sclr(gnd),
@@ -120,7 +119,7 @@ maxii_lcell \inst7~0 (
 	.cout0(),
 	.cout1());
 // synopsys translate_off
-defparam \inst7~0 .lut_mask = "30f3";
+defparam \inst7~0 .lut_mask = "5f05";
 defparam \inst7~0 .operation_mode = "normal";
 defparam \inst7~0 .output_mode = "comb_only";
 defparam \inst7~0 .register_cascade_mode = "off";

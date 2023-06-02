@@ -1,4 +1,4 @@
-// Copyright (C) 1991-2013 Altera Corporation
+// Copyright (C) 1991-2010 Altera Corporation
 // Your use of Altera Corporation's design tools, logic functions 
 // and other software and tools, and its AMPP partner logic 
 // functions, and any output files from any of the foregoing 
@@ -13,10 +13,10 @@
 // applicable agreement for further details.
 
 // VENDOR "Altera"
-// PROGRAM "Quartus II 64-Bit"
-// VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
+// PROGRAM "Quartus II"
+// VERSION "Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition"
 
-// DATE "05/11/2022 21:15:25"
+// DATE "09/18/2022 12:05:59"
 
 // 
 // Device: Altera EPM2210F324C3 Package FBGA324
@@ -46,7 +46,6 @@ output 	ssum;
 // clk	=>  Location: PIN_A5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 // first	=>  Location: PIN_A6,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 // ssum	=>  Location: PIN_A7,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
-
 
 wire gnd;
 wire vcc;

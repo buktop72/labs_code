@@ -1,6 +1,6 @@
 Fitter report for laba5
-Thu May 12 08:36:46 2022
-Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Sun Oct 30 10:23:37 2022
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
 ---------------------
@@ -20,21 +20,21 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
  12. Fitter Resource Utilization by Entity
  13. Delay Chain Summary
  14. Non-Global High Fan-Out Signals
- 15. Other Routing Usage Summary
+ 15. Interconnect Usage Summary
  16. LAB Logic Elements
  17. LAB Signals Sourced
  18. LAB Signals Sourced Out
  19. LAB Distinct Inputs
  20. Fitter Device Options
- 21. Fitter Messages
- 22. Fitter Suppressed Messages
+ 21. Estimated Delay Added for Hold Timing
+ 22. Fitter Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2013 Altera Corporation
+Copyright (C) 1991-2010 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -50,21 +50,21 @@ applicable agreement for further details.
 
 
 
-+-----------------------------------------------------------------------------+
-; Fitter Summary                                                              ;
-+---------------------------+-------------------------------------------------+
-; Fitter Status             ; Successful - Thu May 12 08:36:46 2022           ;
-; Quartus II 64-Bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
-; Revision Name             ; laba5                                           ;
-; Top-level Entity Name     ; laba5                                           ;
-; Family                    ; MAX II                                          ;
-; Device                    ; EPM2210F324A5                                   ;
-; Timing Models             ; Final                                           ;
-; Total logic elements      ; 1 / 2,210 ( < 1 % )                             ;
-; Total pins                ; 4 / 272 ( 1 % )                                 ;
-; Total virtual pins        ; 0                                               ;
-; UFM blocks                ; 0 / 1 ( 0 % )                                   ;
-+---------------------------+-------------------------------------------------+
++----------------------------------------------------------------------+
+; Fitter Summary                                                       ;
++-----------------------+----------------------------------------------+
+; Fitter Status         ; Successful - Sun Oct 30 10:23:37 2022        ;
+; Quartus II Version    ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
+; Revision Name         ; laba5                                        ;
+; Top-level Entity Name ; laba5                                        ;
+; Family                ; MAX II                                       ;
+; Device                ; EPM2210F324A5                                ;
+; Timing Models         ; Final                                        ;
+; Total logic elements  ; 1 / 2,210 ( < 1 % )                          ;
+; Total pins            ; 4 / 272 ( 1 % )                              ;
+; Total virtual pins    ; 0                                            ;
+; UFM blocks            ; 0 / 1 ( 0 % )                                ;
++-----------------------+----------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------+
@@ -80,6 +80,7 @@ applicable agreement for further details.
 ; Use smart compilation                                                      ; Off                            ; Off                            ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                             ; On                             ;
 ; Enable compact report table                                                ; Off                            ; Off                            ;
+; Use TimeQuest Timing Analyzer                                              ; Off                            ; Off                            ;
 ; Router Timing Optimization Level                                           ; Normal                         ; Normal                         ;
 ; Placement Effort Multiplier                                                ; 1.0                            ; 1.0                            ;
 ; Router Effort Multiplier                                                   ; 1.0                            ; 1.0                            ;
@@ -91,7 +92,7 @@ applicable agreement for further details.
 ; Optimize Timing                                                            ; Normal compilation             ; Normal compilation             ;
 ; Optimize Timing for ECOs                                                   ; Off                            ; Off                            ;
 ; Regenerate full fit report during ECO compiles                             ; Off                            ; Off                            ;
-; Optimize IOC Register Placement for Timing                                 ; Normal                         ; Normal                         ;
+; Optimize IOC Register Placement for Timing                                 ; On                             ; On                             ;
 ; Limit to One Fitting Attempt                                               ; Off                            ; Off                            ;
 ; Final Placement Optimizations                                              ; Automatically                  ; Automatically                  ;
 ; Fitter Aggressive Routability Optimizations                                ; Automatically                  ; Automatically                  ;
@@ -101,7 +102,6 @@ applicable agreement for further details.
 ; Weak Pull-Up Resistor                                                      ; Off                            ; Off                            ;
 ; Enable Bus-Hold Circuitry                                                  ; Off                            ; Off                            ;
 ; Auto Delay Chains                                                          ; On                             ; On                             ;
-; Auto Delay Chains for High Fanout Input Pins                               ; Off                            ; Off                            ;
 ; Perform Physical Synthesis for Combinational Logic for Performance         ; Off                            ; Off                            ;
 ; Perform Register Duplication for Performance                               ; Off                            ; Off                            ;
 ; Perform Register Retiming for Performance                                  ; Off                            ; Off                            ;
@@ -112,7 +112,10 @@ applicable agreement for further details.
 ; Auto Register Duplication                                                  ; Auto                           ; Auto                           ;
 ; Auto Global Clock                                                          ; On                             ; On                             ;
 ; Auto Global Register Control Signals                                       ; On                             ; On                             ;
+; Stop After Congestion Map Generation                                       ; Off                            ; Off                            ;
+; Save Intermediate Fitting Results                                          ; Off                            ; Off                            ;
 ; Force Fitter to Avoid Periphery Placement Warnings                         ; Off                            ; Off                            ;
+; Use Best Effort Settings for Compilation                                   ; Off                            ; Off                            ;
 +----------------------------------------------------------------------------+--------------------------------+--------------------------------+
 
 
@@ -122,7 +125,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 ; Processors                 ; Number ;
 +----------------------------+--------+
-; Number detected on machine ; 4      ;
+; Number detected on machine ; 2      ;
 ; Maximum allowed            ; 1      ;
 +----------------------------+--------+
 
@@ -130,7 +133,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in D:/laba5/output_files/laba5.pin.
+The pin-out file can be found in D:/labs_code/algorithmic_means/lab_5/quartus/laba5/output_files/laba5.pin.
 
 
 +-------------------------------------------------------------------+
@@ -161,17 +164,19 @@ The pin-out file can be found in D:/laba5/output_files/laba5.pin.
 ; Total registers                             ; 0 / 2,210 ( 0 % )   ;
 ; Total LABs                                  ; 1 / 221 ( < 1 % )   ;
 ; Logic elements in carry chains              ; 0                   ;
+; User inserted logic elements                ; 0                   ;
 ; Virtual pins                                ; 0                   ;
 ; I/O pins                                    ; 4 / 272 ( 1 % )     ;
 ;     -- Clock pins                           ; 0 / 4 ( 0 % )       ;
-;                                             ;                     ;
 ; Global signals                              ; 0                   ;
 ; UFM blocks                                  ; 0 / 1 ( 0 % )       ;
 ; Global clocks                               ; 0 / 4 ( 0 % )       ;
 ; JTAGs                                       ; 0 / 1 ( 0 % )       ;
 ; Average interconnect usage (total/H/V)      ; 0% / 0% / 0%        ;
 ; Peak interconnect usage (total/H/V)         ; 0% / 0% / 0%        ;
+; Maximum fan-out node                        ; inst7~0             ;
 ; Maximum fan-out                             ; 1                   ;
+; Highest non-global fan-out signal           ; inst7~0             ;
 ; Highest non-global fan-out                  ; 1                   ;
 ; Total fan-out                               ; 4                   ;
 ; Average fan-out                             ; 0.80                ;
@@ -575,9 +580,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------+----------+---------------+
 ; Name ; Pin Type ; Pad to Core 0 ;
 +------+----------+---------------+
-; a1   ; Input    ; (1)           ;
-; a0   ; Input    ; (1)           ;
-; a2   ; Input    ; (1)           ;
+; a1   ; Input    ; (0)           ;
+; a0   ; Input    ; (0)           ;
+; a2   ; Input    ; (0)           ;
 ; y    ; Output   ; --            ;
 +------+----------+---------------+
 
@@ -594,18 +599,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------+-----------------------+
 
 
-+---------------------------------------------------+
-; Other Routing Usage Summary                       ;
-+-----------------------------+---------------------+
-; Other Routing Resource Type ; Usage               ;
-+-----------------------------+---------------------+
-; C4s                         ; 4 / 4,452 ( < 1 % ) ;
-; Global clocks               ; 0 / 4 ( 0 % )       ;
-; LAB clocks                  ; 0 / 88 ( 0 % )      ;
-; LUT chains                  ; 0 / 1,989 ( 0 % )   ;
-; Local interconnects         ; 4 / 6,570 ( < 1 % ) ;
-; R4s                         ; 2 / 4,576 ( < 1 % ) ;
-+-----------------------------+---------------------+
++--------------------------------------------------+
+; Interconnect Usage Summary                       ;
++----------------------------+---------------------+
+; Interconnect Resource Type ; Usage               ;
++----------------------------+---------------------+
+; C4s                        ; 4 / 4,452 ( < 1 % ) ;
+; Direct links               ; 0 / 6,570 ( 0 % )   ;
+; Global clocks              ; 0 / 4 ( 0 % )       ;
+; LAB clocks                 ; 0 / 88 ( 0 % )      ;
+; LUT chains                 ; 0 / 1,989 ( 0 % )   ;
+; Local interconnects        ; 4 / 6,570 ( < 1 % ) ;
+; R4s                        ; 2 / 4,576 ( < 1 % ) ;
++----------------------------+---------------------+
 
 
 +--------------------------------------------------------------------------+
@@ -673,60 +679,70 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+--------------------------+
 
 
++------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing                      ;
++-----------------+----------------------+-------------------+
+; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
++-----------------+----------------------+-------------------+
+
+
 +-----------------+
 ; Fitter Messages ;
 +-----------------+
-Warning (20028): Parallel compilation is not licensed and has been disabled
-Info (119006): Selected device EPM2210F324A5 for design "laba5"
-Info (21077): Low junction temperature is -40 degrees C
-Info (21077): High junction temperature is 125 degrees C
-Info (171003): Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
-Warning (292013): Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature.
-Info (176444): Device migration not selected. If you intend to use device migration later, you may need to change the pin assignments as they may be incompatible with other devices
-    Info (176445): Device EPM2210F324C5 is compatible
-    Info (176445): Device EPM2210F324I5 is compatible
-Critical Warning (332012): Synopsys Design Constraints File file not found: 'laba5.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
-Info (332144): No user constrained base clocks found in the design
-Info (332096): The command derive_clocks did not find any clocks to derive.  No clocks were created or changed.
-Warning (332068): No clocks defined in design.
-Info (332128): Timing requirements not specified -- optimizing circuit to achieve the following default global requirements
-    Info (332127): Assuming a default timing requirement
-Info (332159): No clocks to report
-Warning (332068): No clocks defined in design.
-Info (186079): Completed User Assigned Global Signals Promotion Operation
-Info (186079): Completed Auto Global Promotion Operation
-Info (176234): Starting register packing
-Info (186391): Fitter is using Normal packing mode for logic elements with Auto setting for Auto Packed Registers logic option
-Info (186468): Started processing fast register assignments
-Info (186469): Finished processing fast register assignments
-Info (176235): Finished register packing
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:00
-Info (170189): Fitter placement preparation operations beginning
-Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
-Info (170191): Fitter placement operations beginning
-Info (170137): Fitter placement was successful
-Info (170192): Fitter placement operations ending: elapsed time is 00:00:00
-Info (170193): Fitter routing operations beginning
-Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X0_Y0 to location X10_Y14
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
-Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
-    Info (170201): Optimizations that may affect the design's routability were skipped
-    Info (170200): Optimizations that may affect the design's timing were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 0.08 seconds.
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:00
-Warning (169174): The Reserve All Unused Pins setting has not been specified, and will default to 'As output driving ground'.
-Info (144001): Generated suppressed messages file D:/laba5/output_files/laba5.fit.smsg
-Info: Quartus II 64-Bit Fitter was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 547 megabytes
-    Info: Processing ended: Thu May 12 08:36:46 2022
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:02
-
-
-+----------------------------+
-; Fitter Suppressed Messages ;
-+----------------------------+
-The suppressed messages can be found in D:/laba5/output_files/laba5.fit.smsg.
+Info: *******************************************************************
+Info: Running Quartus II Fitter
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+    Info: Processing started: Sun Oct 30 10:23:36 2022
+Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off laba5 -c laba5
+Info: Selected device EPM2210F324A5 for design "laba5"
+Info: Low junction temperature is -40 degrees C
+Info: High junction temperature is 125 degrees C
+Info: Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
+Warning: Feature LogicLock is only available with a valid subscription license. Please purchase a software subscription to gain full access to this feature.
+Info: Device migration not selected. If you intend to use device migration later, you may need to change the pin assignments as they may be incompatible with other devices
+    Info: Device EPM2210F324C5 is compatible
+    Info: Device EPM2210F324I5 is compatible
+Info: Timing-driven compilation is using the Classic Timing Analyzer
+Info: Timing requirements not specified -- optimizing circuit to achieve the following default global requirements
+    Info: Assuming a global fmax requirement of 1000 MHz
+    Info: Assuming a global tsu requirement of 2.0 ns
+    Info: Assuming a global tco requirement of 1.0 ns
+    Info: Assuming a global tpd requirement of 1.0 ns
+Extra Info: Performing register packing on registers with non-logic cell location assignments
+Extra Info: Completed register packing on registers with non-logic cell location assignments
+Info: Completed User Assigned Global Signals Promotion Operation
+Info: Completed Auto Global Promotion Operation
+Info: Starting register packing
+Info: Fitter is using Normal packing mode for logic elements with Auto setting for Auto Packed Registers logic option
+Extra Info: Moving registers into LUTs to improve timing and density
+Info: Started processing fast register assignments
+Info: Finished processing fast register assignments
+Extra Info: Finished moving registers into LUTs: elapsed time is 00:00:00
+Info: Finished register packing
+Info: Fitter preparation operations ending: elapsed time is 00:00:00
+Info: Fitter placement preparation operations beginning
+Info: Fitter placement preparation operations ending: elapsed time is 00:00:00
+Info: Fitter placement operations beginning
+Info: Fitter placement was successful
+Info: Fitter placement operations ending: elapsed time is 00:00:00
+Info: Estimated most critical path is pin to pin delay of 8.359 ns
+    Info: 1: + IC(0.000 ns) + CELL(1.132 ns) = 1.132 ns; Loc. = PIN_A2; Fanout = 1; PIN Node = 'a0'
+    Info: 2: + IC(2.623 ns) + CELL(0.511 ns) = 4.266 ns; Loc. = LAB_X5_Y13; Fanout = 1; COMB Node = 'inst7~0'
+    Info: 3: + IC(1.771 ns) + CELL(2.322 ns) = 8.359 ns; Loc. = PIN_A6; Fanout = 0; PIN Node = 'y'
+    Info: Total cell delay = 3.965 ns ( 47.43 % )
+    Info: Total interconnect delay = 4.394 ns ( 52.57 % )
+Info: Fitter routing operations beginning
+Info: Average interconnect usage is 0% of the available device resources
+    Info: Peak interconnect usage is 0% of the available device resources in the region that extends from location X0_Y0 to location X10_Y14
+Info: Fitter routing operations ending: elapsed time is 00:00:00
+Info: The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
+    Info: Optimizations that may affect the design's routability were skipped
+    Info: Optimizations that may affect the design's timing were skipped
+Warning: The Reserve All Unused Pins setting has not been specified, and will default to 'As output driving ground'.
+Info: Quartus II Fitter was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 253 megabytes
+    Info: Processing ended: Sun Oct 30 10:23:37 2022
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 
