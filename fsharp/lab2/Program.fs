@@ -144,7 +144,7 @@ let Printing() =
 
 [<EntryPoint>]
 let main argv =
-    let basic = new Module1.Basic(6)
+    let basic = new Module1.Basic(1)
     basic.Modeling(true);
     basic.Modeling(false);
     basic.Calculating(true);
