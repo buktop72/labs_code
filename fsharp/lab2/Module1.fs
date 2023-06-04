@@ -13,6 +13,7 @@ type numberReciver =
     
 let sigma = 1.8
 let mu = 5.6
+let lambda = 0.48
 let maxCountMessage = 1000
 
 // класс, с функциональностью из лабы 1
@@ -30,7 +31,7 @@ type Basic =
             recivers = Array.zeroCreate (count * 100)
             countReciverProbability = [|((0, 0.0), (0, 0.0)); ((0, 0.0), (0, 0.0)); ((0, 0.0), (0, 0.0)); ((0, 0.0), (0, 0.0))|]
             countProbability = [|(0, 0.0); (0, 0.0); (0, 0.0); (0, 0.0)|]
-            messagesTime = Array.zeroCreate count
+            messagesTime = Array.zeroCreate (count * 100)
         }
     (*метод Modeling, в котором выполняется моделирование потока сообщений*)
     member this.Modeling(task: bool) =
@@ -83,6 +84,51 @@ type Basic =
         | One (1,"one") -> this.countReciverProbability.[x - 1] <- ((fst (fst this.countReciverProbability.[x - 1]) + 1, float (fst (fst this.countReciverProbability.[x - 1]) + 1) / float (fst this.countProbability.[x - 1])), (fst (snd this.countReciverProbability.[x - 1]),    snd (snd this.countReciverProbability.[x - 1]))) 
         | Two (2,"two") -> this.countReciverProbability.[x - 1] <- ((fst (fst this.countReciverProbability.[x - 1]), snd (fst this.countReciverProbability.[x - 1])    ), (fst (snd this.countReciverProbability.[x - 1]) + 1, float (fst (snd this.countReciverProbability.[x - 1]) + 1) / float (fst this.countProbability.[x - 1])))
 
+    // Генерация времен поступления сообщений
+    member this.NormalTimeGenerator() =
+        let rand = new Random()
+        for i = 0 to this.k - 1 do
+            let randomNumber = rand.NextDouble()
+            let time = mu + sigma * (sqrt (-2.0 * log randomNumber)) * cos (2.0 * Math.PI * randomNumber)
+            this.messagesTime.[i] <- time
+
+
+
+    member this.ExpoTimeGenerator() =
+        let rand = new Random()
+        for i = 0 to this.k - 1 do
+            let time = -log(rand.NextDouble()) / lambda
+            this.messagesTime.[i] <- time
+
+    member this.BoxMullerGenerator() =
+        let rand = new Random()
+        let mutable u1, u2 = 0.0, 0.0
+        let mutable z1, z2 = 0.0, 0.0
+        for i = 0 to this.k - 1 do
+            u1 <- rand.NextDouble()
+            u2 <- rand.NextDouble()
+            z1 <- sqrt(-2.0 * log u1) * cos (2.0 * Math.PI * u2)
+            //z2 <- sqrt(-2.0 * log u1) * sin (2.0 * Math.PI * u2)
+            let time = mu + sigma * z1
+            this.messagesTime.[i] <- time
+
+    member this.BoxMullerGenerator2() =
+        let rand = new Random()
+        let mutable u1, u2 = 0.0, 0.0
+        let mutable z1, z2 = 0.0, 0.0
+        let mutable i = 0
+        while i <= this.k - 1 do
+            u1 <- rand.NextDouble()
+            u2 <- rand.NextDouble()
+            z1 <- sqrt(-2.0 * log u1) * cos (2.0 * Math.PI * u2)
+            z2 <- sqrt(-2.0 * log u1) * sin (2.0 * Math.PI * u2)
+            let time1 = mu + sigma * z1
+            this.messagesTime.[i] <- time1
+            let time2 = mu + sigma * z1
+            this.messagesTime.[i + 1] <- time2
+            i <- i + 2
+
+
     (*Создать метод Calculating*)
     member this.Calculating(task: bool) =
         if task then
@@ -100,7 +146,11 @@ type Basic =
             this.countProbability.[3] <- (num4, probablity4)
         
             Array.iter2 (fun x y -> this.incrementCount(x, y)) this.stream this.recivers
+    (*Создать новый метод для выполнения задачи 3. Для генерации времени использовать
+    (уровень 3) экспоненциальное распределение или (уровни 4 и 5) нормальное распределение.*)
 
+    //member this.Generator() =
+        
 
     member this.Printing() =
         printfn "count messeges: %i" this.k
@@ -110,5 +160,6 @@ type Basic =
         printfn "%A" this.countProbability
         printfn "recivers probability:"
         printfn "%A" this.countReciverProbability
-        printfn "Время:"
+        printfn "message times:"
+        printfn "%A" this.messagesTime
 

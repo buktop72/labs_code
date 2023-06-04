@@ -144,7 +144,11 @@ let Printing() =
 
 [<EntryPoint>]
 let main argv =
-    let basic = new Module1.Basic(1)
+    let basic = new Module1.Basic(1);
+    //basic.NormalTimeGenerator();
+    //basic.ExpoTimeGenerator();
+    //basic.BoxMullerGenerator();
+    basic.BoxMullerGenerator2();
     basic.Modeling(true);
     basic.Modeling(false);
     basic.Calculating(true);
