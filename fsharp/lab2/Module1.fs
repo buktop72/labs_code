@@ -16,6 +16,7 @@ let mu = 5.6
 let lambda = 0.48
 let maxCountMessage = 1000
 
+
 // класс, с функциональностью из лабы 1
 type Basic =
     val mutable k: int
@@ -24,14 +25,24 @@ type Basic =
     val countReciverProbability : ((int * float) * (int * float)) array
     val countProbability : (int * float) array
     val messagesTime: float array
+    val mutable averageFrequencies : float array
+    val mutable expectedIntervals : float array
+    val mutable frequencies: float[,]
     new (count: int) =
+        let messageTypes = [|1; 2; 3; 4|]
+        let receiverTypes = [|One (1, "one"); Two (2, "two")|]
+        let frequencies = Array2D.create<float> messageTypes.Length receiverTypes.Length 0.0
+        let k = count * 10
         {
-            k = count * 100
-            stream = Array.zeroCreate (count * 100)
-            recivers = Array.zeroCreate (count * 100)
+            k = count * 10
+            stream = Array.zeroCreate k 
+            recivers = Array.zeroCreate k
             countReciverProbability = [|((0, 0.0), (0, 0.0)); ((0, 0.0), (0, 0.0)); ((0, 0.0), (0, 0.0)); ((0, 0.0), (0, 0.0))|]
             countProbability = [|(0, 0.0); (0, 0.0); (0, 0.0); (0, 0.0)|]
-            messagesTime = Array.zeroCreate (count * 100)
+            messagesTime = Array.zeroCreate k
+            averageFrequencies = [| |]
+            expectedIntervals = [| |]
+            frequencies = frequencies
         }
     (*метод Modeling, в котором выполняется моделирование потока сообщений*)
     member this.Modeling(task: bool) =
@@ -149,8 +160,32 @@ type Basic =
     (*Создать новый метод для выполнения задачи 3. Для генерации времени использовать
     (уровень 3) экспоненциальное распределение или (уровни 4 и 5) нормальное распределение.*)
 
-    //member this.Generator() =
-        
+    member this.CalculateStatistics() =
+        let messageTypes = [|1; 2; 3; 4|]
+
+        for i = 0 to messageTypes.Length - 1 do
+            let messageType = messageTypes.[i]
+            let count = Array.filter (fun x -> x = messageType) this.stream |> Array.length
+            let frequency = float count / float this.k
+            let expectedInterval = 1.0 / frequency
+            this.averageFrequencies <- Array.append this.averageFrequencies [| frequency |]
+            this.expectedIntervals <- Array.append this.expectedIntervals [| expectedInterval |]   
+       
+    member this.CalculateReceiverFrequencies() =
+        let messageTypes = [|1; 2; 3; 4|]
+        let receiverTypes = [|One (1, "one"); Two (2, "two")|]
+        //let mutable frequencies = Array2D.create<float> messageTypes.Length receiverTypes.Length 0.0
+
+        for i = 0 to messageTypes.Length - 1 do
+            let messageType = messageTypes.[i]
+
+            for j = 0 to receiverTypes.Length - 1 do
+                let receiverType = receiverTypes.[j]
+                let count = Array.filter (fun (m, r) -> m = messageType && r = receiverType) (Array.zip this.stream this.recivers) |> Array.length
+                let frequency = float count / float this.k
+
+                this.frequencies.[i, j] <- frequency
+
 
     member this.Printing() =
         printfn "count messeges: %i" this.k
@@ -162,4 +197,11 @@ type Basic =
         printfn "%A" this.countReciverProbability
         printfn "message times:"
         printfn "%A" this.messagesTime
+        printfn "частота поступления сообщений для каждого типа:"
+        printfn "%A" this.averageFrequencies
+        printfn "математическое ожидание распределения временных интервалов для каждого типа:"
+        printfn "%A" this.expectedIntervals
+
+        printfn "средняя частота поступления сообщений в приёмники:"
+        printfn "%A" this.frequencies
 

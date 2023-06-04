@@ -152,6 +152,8 @@ let main argv =
     basic.Modeling(true);
     basic.Modeling(false);
     basic.Calculating(true);
+    basic.CalculateStatistics();
+    basic.CalculateReceiverFrequencies()
     basic.Printing();
 
     0 // return an integer exit code
