@@ -1,6 +1,7 @@
 ﻿module Module1
 open System
 
+
 (*  1 - temp <= 0.55
     2 - temp > 0.55 && temp <= 0.63
     3 - temp > 0.63 && temp <= 0.75
@@ -32,9 +33,9 @@ type Basic =
         let messageTypes = [|1; 2; 3; 4|]
         let receiverTypes = [|One (1, "one"); Two (2, "two")|]
         let frequencies = Array2D.create<float> messageTypes.Length receiverTypes.Length 0.0
-        let k = count * 10
+        let k = count * 100
         {
-            k = count * 10
+            k = count * 100
             stream = Array.zeroCreate k 
             recivers = Array.zeroCreate k
             countReciverProbability = [|((0, 0.0), (0, 0.0)); ((0, 0.0), (0, 0.0)); ((0, 0.0), (0, 0.0)); ((0, 0.0), (0, 0.0))|]
@@ -135,7 +136,7 @@ type Basic =
             z2 <- sqrt(-2.0 * log u1) * sin (2.0 * Math.PI * u2)
             let time1 = mu + sigma * z1
             this.messagesTime.[i] <- time1
-            let time2 = mu + sigma * z1
+            let time2 = mu + sigma * z2
             this.messagesTime.[i + 1] <- time2
             i <- i + 2
 
@@ -160,9 +161,10 @@ type Basic =
     (*Создать новый метод для выполнения задачи 3. Для генерации времени использовать
     (уровень 3) экспоненциальное распределение или (уровни 4 и 5) нормальное распределение.*)
 
+// частота поступления сообщений для каждого типа
+// математическое ожидание распределения временных интервалов для каждого типа
     member this.CalculateStatistics() =
         let messageTypes = [|1; 2; 3; 4|]
-
         for i = 0 to messageTypes.Length - 1 do
             let messageType = messageTypes.[i]
             let count = Array.filter (fun x -> x = messageType) this.stream |> Array.length
@@ -170,7 +172,8 @@ type Basic =
             let expectedInterval = 1.0 / frequency
             this.averageFrequencies <- Array.append this.averageFrequencies [| frequency |]
             this.expectedIntervals <- Array.append this.expectedIntervals [| expectedInterval |]   
-       
+
+// средняя частота поступления сообщений в приёмники      
     member this.CalculateReceiverFrequencies() =
         let messageTypes = [|1; 2; 3; 4|]
         let receiverTypes = [|One (1, "one"); Two (2, "two")|]

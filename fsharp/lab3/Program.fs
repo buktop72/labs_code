@@ -1,4 +1,5 @@
 ﻿open System
+open Module1
 (*  1 - temp <= 0.55
     2 - temp > 0.55 && temp <= 0.63
     3 - temp > 0.63 && temp <= 0.75
@@ -153,7 +154,7 @@ let main argv =
     basic.Modeling(false);
     basic.Calculating(true);
     basic.CalculateStatistics();
-    basic.CalculateReceiverFrequencies()
+    basic.CalculateReceiverFrequencies();
     basic.Printing();
 
     0 // return an integer exit code
