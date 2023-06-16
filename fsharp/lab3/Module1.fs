@@ -15,7 +15,7 @@ type numberReciver =
 let sigma = 1.8
 let mu = 5.6
 let lambda = 0.48
-let maxCountMessage = 1000
+
 
 
 // класс, с функциональностью из лабы 1
