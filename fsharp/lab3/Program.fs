@@ -157,9 +157,10 @@ let main argv =
     basic.CalculateReceiverFrequencies();
     basic.Printing();
 
+    let Lab3 = new Module2.Lab3(41, 64, 0.41, 600);  // start, end, p, n
+    Lab3.GenerateMessageLengths();
+    Lab3.MathExpect;
 
-    let Lab3 = new Module2.Lab3(41, 64, 0.41, 600)  // start, end, p, n
-    Lab3.GenerateMessageLengths()
     Lab3.PrintMessageLengths()
     0 // return an integer exit code
 
