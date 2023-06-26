@@ -145,7 +145,7 @@ let Printing() =
 
 [<EntryPoint>]
 let main argv =
-    let basic = new Module1.Basic(1);
+    let basic = new Module1.Basic(6);
     //basic.NormalTimeGenerator();
     //basic.ExpoTimeGenerator();
     //basic.BoxMullerGenerator();
@@ -157,10 +157,11 @@ let main argv =
     basic.CalculateReceiverFrequencies();
     basic.Printing();
 
-    let Lab3 = new Module2.Lab3(41, 64, 0.41, 600);  // start, end, p, n
+    let Lab3 = new Module2.Lab3(41, 64, 0.41, 6);  // start, end, p, n
     Lab3.GenerateMessageLengths();
     Lab3.MathExpect;
 
+    Lab3.CorrelationCoefficient()
     Lab3.PrintMessageLengths()
     0 // return an integer exit code
 
