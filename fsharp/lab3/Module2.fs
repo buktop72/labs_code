@@ -98,15 +98,15 @@ type Lab3(minLength: int, maxLength: int, p: float, count: int) =
 *)
 
     member this.CorrelationCoefficient() =
-        let lengthProductSum = 
+        let lengthProductSum =
             let lastIndex = Array.length messageLengths - 1
-            Array.fold (fun acc i -> acc + messageLengths.[i] * messageLengths.[(i + 1) % lastIndex]) 0 messageLengths
+            Array.mapi (fun i length -> length * messageLengths.[(i + 1) % (Array.length messageLengths)]) messageLengths
+            |> Array.sum
     
         let sumSquared = Array.sum messageLengths |> float |> fun sum -> sum ** 2.0
         let sumSquaredValues = float (Array.sumBy (fun x -> x * x) messageLengths)
         let n = float this.k
-        //let n = float messageLengths.Length
-        printfn "%A %A %A %A" n lengthProductSum sumSquared sumSquaredValues
+        // printfn "%A %A %A %A" n lengthProductSum sumSquared sumSquaredValues
         let res = (n * (float lengthProductSum) - sumSquared) / (n * sumSquaredValues - sumSquared)
         res
 
